@@ -1,0 +1,10 @@
+<?php
+
+// Simple redirect function
+function redirect_to($location = null)
+{
+    if ($location != null) {
+        header("Location: {$location}");
+        exit;
+    }
+}
