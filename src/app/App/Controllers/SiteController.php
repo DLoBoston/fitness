@@ -28,6 +28,7 @@ class SiteController {
     {
         $data = Login::initializeVars();
         $response = $this->container->get('view')->render($response, "login.php", ['data' => $data]);
+        unset($_SESSION['loginFormData']);
         return $response;
     }
     
