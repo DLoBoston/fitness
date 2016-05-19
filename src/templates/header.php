@@ -5,4 +5,4 @@
 </html>
 <body>
     
-<h1>My Fitness App</h1>
+<h1><a href="/">My Fitness App</a></h1>

@@ -26,7 +26,8 @@ class SiteController {
     
     public function showLogin($request, $response)
     {
-        $response = $this->container->get('view')->render($response, "login.php");
+        $data = Login::initializeVars();
+        $response = $this->container->get('view')->render($response, "login.php", ['data' => $data]);
         return $response;
     }
     
@@ -34,15 +35,15 @@ class SiteController {
     {
         // Validate submission
         $data = $request->getParsedBody();
-        $validSubmission = Login::validateSubmission($data);
+        $data = Login::validateSubmission($data);
         
         // Query database
-        if ($validSubmission):
+        if ($data['validSubmission']):
             $loginSuccess = User::getByLogin($this->container, $data);
         endif;
         
         // Redirect user accordingly
-        if ($validSubmission && $loginSuccess):
+        if ($data['validSubmission'] && $loginSuccess):
             redirect_to('/dashboard');
         else:
             redirect_to('/login');

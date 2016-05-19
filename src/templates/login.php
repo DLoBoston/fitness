@@ -5,7 +5,7 @@
 <form action="/login" method="post">
     <label>
         Username:
-        <input name="username" type="text" value="">
+        <input name="username" type="text" value="<?= $data['username']; ?>">
     </label>
     <label>
         Password:
