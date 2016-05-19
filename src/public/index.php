@@ -21,5 +21,8 @@ require '../app/dependencies.php';
 // Register routes
 require '../app/routes.php';
 
+// Apply middleware
+$app->add(new \App\SessionMiddleware());
+
 // Run
 $app->run();
