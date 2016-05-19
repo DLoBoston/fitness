@@ -2,6 +2,18 @@
 
 <h2>Login</h2>
 
+<div class="messages">
+    <ul>
+        <?php
+            if (isset($_SESSION['loginFormData']['errorMsgs'])):
+                foreach ($_SESSION['loginFormData']['errorMsgs'] as $msg):
+                    echo "<li>$msg</li>";
+                endforeach;
+            endif;
+        ?>
+    </ul>
+</div>
+
 <form action="/login" method="post">
     <label>
         Username:

@@ -42,6 +42,9 @@ class SiteController {
             $loginSuccess = User::getByLogin($this->container, $data);
         endif;
         
+        // Put user's data into SESSION
+        $_SESSION['loginFormData'] = $data;
+        
         // Redirect user accordingly
         if ($data['validSubmission'] && $loginSuccess):
             redirect_to('/dashboard');
