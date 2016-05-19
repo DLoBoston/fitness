@@ -28,6 +28,7 @@ class SiteController {
     {
         $data = Login::initializeVars();
         $response = $this->container->get('view')->render($response, "login.php", ['data' => $data]);
+        // Unset user's previous submission data stored in session to prevent redisplay upon future requests
         unset($_SESSION['loginFormData']);
         return $response;
     }
