@@ -1,8 +1,4 @@
-<?php
-
-require 'header.php';
-
-?>
+<?php require 'header.php'; ?>
 
 <h2>Login</h2>
 
@@ -17,3 +13,5 @@ require 'header.php';
     </label>
     <input type="submit">
 </form>
+
+<?php require 'footer.php'; ?>
