@@ -27,28 +27,43 @@ class SiteController {
     public function showLogin($request, $response)
     {
         $data = Login::initializeVars();
+        
         $response = $this->container->get('view')->render($response, "login.php", ['data' => $data]);
-        // Unset user's previous submission data stored in session to prevent redisplay upon future requests
-        unset($_SESSION['loginFormData']);
+        
+        // Unset user's previous submission stored in session to prevent redisplay upon future requests
+        unset($_SESSION['loginForm']);
+        
         return $response;
     }
     
     public function processLogin($request, $response)
     {
+        
         // Validate submission
         $data = $request->getParsedBody();
-        $data = Login::validateSubmission($data);
+        $validationResults = Login::validateSubmission($data);
         
-        // Query database
-        if ($data['validSubmission']):
-            $loginSuccess = User::getByLogin($this->container, $data);
+        // Query database if valid submission
+        if ($validationResults['validSubmission']):
+        
+            $userId = User::getIdByLogin($this->container, $data);
+            
+            // Store result of User ID query in SESSION
+            $_SESSION['userId'] = $userId;
+            
+            // Set error message if applicable
+            if (!$userId):
+                $validationResults['errors'][] = 'Username and password combination are incorrect.';
+            endif;
+            
         endif;
         
-        // Put user's data into SESSION
-        $_SESSION['loginFormData'] = $data;
+        // Put user's login submission and results into SESSION for future reference in other requests
+        $_SESSION['loginForm']['submission'] = $data;
+        $_SESSION['loginForm']['validationResults'] = $validationResults;
         
-        // Redirect user accordingly
-        if ($data['validSubmission'] && $loginSuccess):
+        // Redirect user to dashboard if submission valid and user found
+        if ($validationResults['validSubmission'] && $userId):
             redirect_to('/dashboard');
         else:
             redirect_to('/login');

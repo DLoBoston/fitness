@@ -5,12 +5,12 @@ abstract class Login {
     
     public static function initializeVars()
     {
-        // Initialize vars
+        // Initialize form vars
         $data = ['username' => ''];
         
-        // Overwrite vars with applicable SESSION data
-        if(isset($_SESSION['loginFormData'])):
-            $data['username'] = $_SESSION['loginFormData']['username'];
+        // Overwrite applicable form fields with SESSION data
+        if(isset($_SESSION['loginForm'])):
+            $data['username'] = $_SESSION['loginForm']['submission']['username'];
         endif;
         
         return $data;
@@ -18,26 +18,26 @@ abstract class Login {
     
     public static function validateSubmission(array $data)
     {
-        // Initialize validation data
-        $data['validSubmission'] = true;
-        unset($data['errorMsgs']);
+        // Initialize validation results
+        $validationResults['validSubmission'] = true;
+        $validationResults['errors'] = [];
         
         // Check required fields
         $requiredFields = ['username', 'password'];
         foreach ($requiredFields as $fieldName):
             if (trim($data[$fieldName]) == ''):
-                $data['errorMsgs'][] = ucfirst($fieldName) . ' is required.';
-                $data['validSubmission'] = false;
+                $validationResults['errors'][] = ucfirst($fieldName) . ' is required.';
+                $validationResults['validSubmission'] = false;
             endif;
         endforeach;
         
         // Check username is email
         if (!filter_var($data['username'], FILTER_VALIDATE_EMAIL)):
-            $data['errorMsgs'][] = "Username is not a valid email.";
-            $data['validSubmission'] = false;
+            $validationResults['errors'][] = "Username is not a valid email.";
+            $validationResults['validSubmission'] = false;
         endif;
         
-        return $data;
+        return $validationResults;
     }
     
 }

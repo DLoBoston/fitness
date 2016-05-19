@@ -4,10 +4,10 @@
 
 <div class="messages">
     <ul>
-        <?php
-            if (isset($_SESSION['loginFormData']['errorMsgs'])):
-                foreach ($_SESSION['loginFormData']['errorMsgs'] as $msg):
-                    echo "<li>$msg</li>";
+        <?php        
+            if (isset($_SESSION['loginForm']['validationResults']['errors'])):
+                foreach ($_SESSION['loginForm']['validationResults']['errors'] as $error):
+                    echo "<li>$error</li>";
                 endforeach;
             endif;
         ?>

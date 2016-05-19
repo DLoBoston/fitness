@@ -6,14 +6,20 @@ use \Slim\Container;
 abstract class User
 {
     
-    public static function getByLogin(Container $c, array $data)
+    public static function getIdByLogin(Container $c, array $data)
     {
+        // Get user by username
         $db = $c->get('db');
         $statement = $db->prepare('SELECT * FROM users WHERE username = :username');
         $statement->bindValue('username', $data['username'], \PDO::PARAM_STR);
         $statement->execute();
+        
+        // Validate password matches
         $result = $statement->fetch();
-        return password_verify($data['password'], $result['password']);
+        $passwordMatches = password_verify($data['password'], $result['password']);
+        
+        // Return ID if match, else false
+        return ($passwordMatches) ? $result['id'] : false;
     }
     
 }
