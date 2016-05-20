@@ -1,4 +1,4 @@
-<?php require 'header.php'; ?>
+<?php require 'partials/header.php'; ?>
 
 <h2>Login</h2>
 
@@ -26,4 +26,4 @@
     <input type="submit">
 </form>
 
-<?php require 'footer.php'; ?>
+<?php require 'partials/footer.php'; ?>

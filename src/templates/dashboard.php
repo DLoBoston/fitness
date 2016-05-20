@@ -1,5 +1,5 @@
-<?php require 'header.php'; ?>
+<?php require 'partials/header.php'; ?>
 
 <h2>Dashboard</h2>
 
-<?php require 'footer.php'; ?>
+<?php require 'partials/footer.php'; ?>

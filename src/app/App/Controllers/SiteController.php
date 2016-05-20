@@ -76,4 +76,12 @@ class SiteController {
         return $response;
     }
     
+    public function logoutUser($request, $response)
+    {
+        // Unset session vars, destroy session, redirect user
+        $_SESSION = array();
+        session_destroy();
+        redirect_to('/login');
+    }
+    
 }
