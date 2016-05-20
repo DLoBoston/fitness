@@ -1,7 +1,7 @@
 <?php
 
 // Application middleware to start session on every request
-$app->add(function ($request, $response, $next) {
+$app->add(function ($request, $response, $next)) {
     session_start();
 	$response = $next($request, $response);
 	return $response;
@@ -12,4 +12,6 @@ $requireLoggedIn = function ($request, $response, $next) {
     if (!isset($_SESSION['userId'])):
         redirect_to('/login');
     endif;
+	$response = $next($request, $response);
+	return $response;
 };
