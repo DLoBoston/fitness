@@ -1,0 +1,43 @@
+<?php
+namespace App\Models;
+
+abstract class Login {
+    
+    public static function initializeVars()
+    {
+        // Initialize form vars
+        $data = ['username' => ''];
+        
+        // Overwrite applicable form fields with SESSION data
+        if(isset($_SESSION['loginForm'])):
+            $data['username'] = $_SESSION['loginForm']['submission']['username'];
+        endif;
+        
+        return $data;
+    }
+    
+    public static function validateSubmission(array $data)
+    {
+        // Initialize validation results
+        $validationResults['validSubmission'] = true;
+        $validationResults['errors'] = [];
+        
+        // Check required fields
+        $requiredFields = ['username', 'password'];
+        foreach ($requiredFields as $fieldName):
+            if (trim($data[$fieldName]) == ''):
+                $validationResults['errors'][] = ucfirst($fieldName) . ' is required.';
+                $validationResults['validSubmission'] = false;
+            endif;
+        endforeach;
+        
+        // Check username is email
+        if (!filter_var($data['username'], FILTER_VALIDATE_EMAIL)):
+            $validationResults['errors'][] = "Username is not a valid email.";
+            $validationResults['validSubmission'] = false;
+        endif;
+        
+        return $validationResults;
+    }
+    
+}

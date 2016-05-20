@@ -1,0 +1,12 @@
+<?php
+
+ return $settings = [
+    'displayErrorDetails' => true,
+    'db' => [
+        'host' => 'localhost',
+        'dbname' => 'fitness',
+        'user' => 'fitness',
+        'pass' => 'ssentif'
+        ]
+    ];
+
