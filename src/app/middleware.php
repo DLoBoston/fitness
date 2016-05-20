@@ -12,4 +12,6 @@ $requireLoggedIn = function ($request, $response, $next) {
     if (!isset($_SESSION['userId'])):
         redirect_to('/login');
     endif;
+	$response = $next($request, $response);
+	return $response;
 };
