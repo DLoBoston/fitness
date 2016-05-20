@@ -18,7 +18,7 @@ class SiteController {
     {
         // Check if user is logged in and redirect accordingly
         if (isset($_SESSION['userId'])):
-            redirect_to('/dashboard');
+            redirect_to('/my/dashboard');
         else:
             redirect_to('/login');
         endif;
@@ -64,7 +64,7 @@ class SiteController {
         
         // Redirect user to dashboard if submission valid and user found
         if ($validationResults['validSubmission'] && $userId):
-            redirect_to('/dashboard');
+            redirect_to('/my/dashboard');
         else:
             redirect_to('/login');
         endif;

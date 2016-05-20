@@ -18,11 +18,11 @@ $app = new \Slim\App(["settings" => $settings]);
 // Add dependecies
 require '../app/dependencies.php';
 
+// Register middleware
+require '../app/middleware.php';
+
 // Register routes
 require '../app/routes.php';
-
-// Apply middleware
-$app->add(new \App\SessionMiddleware());
 
 // Run
 $app->run();
