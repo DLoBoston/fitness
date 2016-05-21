@@ -7,10 +7,20 @@
 
  return $settings = [
     'displayErrorDetails' => true,
-    'db' => [
+    'db' => [ // For PDO connection
         'host' => 'localhost',
         'dbname' => 'fitness',
         'user' => 'fitness',
         'pass' => 'ssentif'
+        ],
+    'orm' => [ // For Eloquent ORM
+        'driver' => 'mysql',
+        'host' => 'localhost',
+        'database' => 'fitness',
+        'username' => 'fitness',
+        'password' => 'ssentif',
+        'charset'   => 'utf8',
+        'collation' => 'utf8_unicode_ci',
+        'prefix'    => '',
         ]
     ];
