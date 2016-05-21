@@ -17,3 +17,4 @@ $app->group('/my', function () {
     $this->get('/dashboard', '\App\Controllers\SiteController:showDashboard');
     $this->get('/logout', '\App\Controllers\SiteController:logoutUser');
 })->add($requireLoggedIn);
+

@@ -17,3 +17,4 @@ $container['db'] = function ($c) {
 $container['\App\Controllers\SiteController'] = function ($c) {
     return new \App\Controllers\SiteController($c);
 };
+
