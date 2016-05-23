@@ -16,4 +16,11 @@ $app->post('/login', '\App\Controllers\SiteController:processLogin');
 $app->group('/my', function () {
     $this->get('/dashboard', '\App\Controllers\SiteController:showDashboard');
     $this->get('/logout', '\App\Controllers\SiteController:logoutUser');
+    
+    $this->get('/workouts', '\App\Controllers\WorkoutsController:showWorkouts');
+    $this->get('/workout', '\App\Controllers\WorkoutsController:showWorkout');
+    $this->post('/workout', '\App\Controllers\WorkoutsController:addWorkout');
+    $this->put('/workout', '\App\Controllers\WorkoutsController:updateWorkout');
+    $this->delete('/workout', '\App\Controllers\WorkoutsController:deleteWorkout');
+    
 })->add($requireLoggedIn);

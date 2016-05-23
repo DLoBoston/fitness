@@ -24,3 +24,6 @@ $container['orm'] = function ($c) {
 $container['\App\Controllers\SiteController'] = function ($c) {
     return new \App\Controllers\SiteController($c);
 };
+$container['\App\Controllers\WorkoutsController'] = function ($c) {
+    return new \App\Controllers\WorkoutsController($c);
+};
