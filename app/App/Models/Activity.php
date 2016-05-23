@@ -7,7 +7,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-/*
+/**
  * Models interaction with activities entity in persistent data.
  * Activities are anything someone can do for an exercise.
  */
