@@ -13,7 +13,8 @@ use \App\Models\User;
  * Main controller for the site that manages the work to be done by route requests.
  * Divies up work between models, views, and simple procedural statements.
  */
-class SiteController {
+class SiteController
+{
     
     /**
      * @var array Application dependency container
