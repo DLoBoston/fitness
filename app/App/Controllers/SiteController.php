@@ -85,16 +85,15 @@ class SiteController {
         $data = $request->getParsedBody();
         $validationResults = Login::validateSubmission($data);
         
-        // Query database if valid submission
+        // Find user if valid submission
         if ($validationResults['validSubmission']):
         
             $userId = User::getIdByLogin($this->container, $data);
             
-            // Store result of User ID query in SESSION
-            $_SESSION['userId'] = $userId;
-            
-            // Set error message if applicable
-            if (!$userId):
+            // Store result of User ID query in SESSION, else set error message
+            if ($userId):
+                $_SESSION['userId'] = $userId;
+            else:
                 $validationResults['errors'][] = 'Username and password combination are incorrect.';
             endif;
             
