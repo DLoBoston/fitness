@@ -3,7 +3,7 @@
  * Workout model
  * @author Digital D.Lo <WebDevDLo@gmaiil.com>
  */
-namespace App\Models
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
