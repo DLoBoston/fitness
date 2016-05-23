@@ -6,11 +6,13 @@
 namespace App\Models;
 
 use \Slim\Container;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Models interaction with user entity in persistent data store.
+ * Models interaction with users entity in persistent data store.
+ * A user can have different roles in the system, like admin and normal user.
  */
-abstract class User
+class User extends Model
 {
     
     /**
@@ -23,17 +25,14 @@ abstract class User
     public static function getIdByLogin(Container $c, array $data)
     {
         // Get user by username
-        $db = $c->get('db');
-        $statement = $db->prepare('SELECT * FROM users WHERE username = :username');
-        $statement->bindValue('username', $data['username'], \PDO::PARAM_STR);
-        $statement->execute();
+        $c->get('orm');
+        $user = self::where('username', $data['username'])->first();
         
         // Validate password matches
-        $result = $statement->fetch();
-        $passwordMatches = password_verify($data['password'], $result['password']);
+        $passwordMatches = password_verify($data['password'], $user->password);
         
         // Return ID if match, else false
-        return ($passwordMatches) ? $result['id'] : false;
+        return ($passwordMatches) ? $user->id : false;
     }
     
 }
