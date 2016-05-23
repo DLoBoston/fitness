@@ -2,7 +2,7 @@
 
 <h2>Dashboard</h2>
 
-<h3>Workouts</h3>
+<?php require 'partials/workouts.php'; ?>
 
 <h4>Activities Database</h4>
 
