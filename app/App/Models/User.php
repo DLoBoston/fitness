@@ -14,6 +14,14 @@ use Illuminate\Database\Eloquent\Model;
  */
 class User extends Model
 {
+    /**
+     * This function is an Eloquent convention that creates a relationship between the User and Workout models.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection A collection of workouts or null
+     */
+    public function workouts() {
+        return $this->hasMany('\App\Models\Workout');
+    }
     
     /**
      * Get user's ID from persistent data store if username and password match.
