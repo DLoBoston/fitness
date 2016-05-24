@@ -113,7 +113,8 @@ class SiteController
     }
     
     /**
-     * Simply shows the user's dashboard
+     * Get a summary of information for the logged in user and display in dashboard.
+     * User is found with SESSION['userId'].
      * 
      * @param \Slim\Http\Request $request PSR-7 Request
      * @param \Slim\Http\Response $response PSR-7 Response
@@ -121,7 +122,14 @@ class SiteController
      */    
     public function showDashboard($request, $response)
     {
-        $response = $this->container->get('view')->render($response, "dashboard.php");
+        // Connect to ORM
+        $this->container->get('orm');
+        
+        // Get the logged in user's workouts
+        $workouts = User::find($_SESSION['userId'])->workouts;
+        
+        // Display
+        $response = $this->container->get('view')->render($response, 'dashboard.php', ['workouts' => $workouts]);
         return $response;
     }
     

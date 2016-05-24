@@ -47,7 +47,7 @@ class WorkoutsController
         $workouts = User::find($_SESSION['userId'])->workouts;
         
         // Display
-        $response = $this->container->get('view')->render($response, "dashboard.php", ["workouts" => $workouts]);
+        $response = $this->container->get('view')->render($response, "partials/workouts.php", ["workouts" => $workouts]);
         return $response;
     }
     
