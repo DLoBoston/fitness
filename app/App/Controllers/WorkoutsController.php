@@ -44,7 +44,7 @@ class WorkoutsController
         $this->container->get('orm');
         
         // Get the logged in user's workouts
-        $workouts = User::find($_SESSION['userId'])->workouts;
+        $workouts = User::find($_SESSION['userId'])->workouts()->orderBy('workout_date', 'desc')->get();
         
         // Display
         $response = $this->container->get('view')->render($response, "partials/workouts.php", ["workouts" => $workouts]);
