@@ -120,16 +120,10 @@ class SiteController
      * @param \Slim\Http\Response $response PSR-7 Response
      * @return \Slim\Http\Response $response PSR-7 Response
      */    
-    public function showDashboard($request, $response)
-    {
-        // Connect to ORM
-        $this->container->get('orm');
-        
-        // Get the logged in user's workouts
-        $workouts = User::find($_SESSION['userId'])->workouts()->orderBy('workout_date', 'desc')->get();
-        
+    public function showDashboard($request, $response) {
+    
         // Display
-        $response = $this->container->get('view')->render($response, 'dashboard.php', ['workouts' => $workouts]);
+        $response = $this->container->get('view')->render($response, 'dashboard.php');
         return $response;
     }
     
