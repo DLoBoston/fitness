@@ -2,7 +2,6 @@
     <head>
         <title>My Fitness App</title>
     </head>
-</html>
 <body>
     
 <header>
